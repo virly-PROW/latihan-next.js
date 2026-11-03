@@ -7,7 +7,9 @@ import { use } from "react";
 const menu = [
     {href: "/", teks: "Beranda"},
     {href: "/event", teks: "Event"},
+    {href: "/favorit", teks: "Favorit"},
     {href: "/tentang", teks: "Tentang"},
+    {href: "/kontak", teks: "Kontak"},
 ]
 
 export default function Navbar() {

@@ -11,7 +11,7 @@ export default function Daftarfavorit() {
     const [galat, setGalat] = useState("");
     
     useEffect(() => {
-        //eslint disable next line reat hooks/set state in effect 
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIds(JSON.parse(localStorage.getItem("favorit") || "[]"));
         fetch("/api/events")
         .then((r) => {
@@ -32,11 +32,6 @@ export default function Daftarfavorit() {
   return (
     <ul className="space-y-2">
       {daftar.map((e) => (
-        // <li key={e.id}>
-        //   <Link href={`/event/${e.id}`} className="text-blue-600 hover:underline">
-        //     {e.judul}
-        //   </Link>
-        // </li>
         <li key={e.id} className="flex justify-between">
         <Link href={`/event/${e.id}`} className="text-blue-600 hover:underline">
           {e.judul}

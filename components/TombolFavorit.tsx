@@ -6,7 +6,7 @@ export default function TombolFavorit({id}: {id: number}) {
 
     useEffect(() => {
         const simpan: number[] = JSON.parse(localStorage.getItem("favorit")  ?? "[]");
-        //ESLINT DISABLE NEXT LINE REACT HOOKS SET STATE IN EFFECT
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setFavorit(simpan.includes(id));
     }, [id]);
 

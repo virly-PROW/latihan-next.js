@@ -1,6 +1,8 @@
 import {notFound} from "next/navigation";
 import {events, rupiah} from '@/data/event';
 import FormPesan from "@/components/FormPesan";
+import TombolFavorit from "@/components/TombolFavorit";
+
 
 export default async function Detail({params}: PageProps<"/event/[id]">) {
     const {id} = await params;
@@ -17,6 +19,7 @@ export default async function Detail({params}: PageProps<"/event/[id]">) {
             <p className="mt-1 text-slate-500">{event.tanggal} . {event.lokasi}</p>
             <p className="mt-4 text-2xl font-semibold">{rupiah(event.harga)}</p>
             <p className="text-slate-600"> Sisa {sisa} dari {event.kuota} tiket</p>
+            <TombolFavorit id ={event.id} />
             <FormPesan event={event} />
         </article>
     )

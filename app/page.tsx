@@ -7,7 +7,7 @@ export default function Beranda() {
   return (
     <div>
       <section className="py-12 text-center">
-        <h1 className="text-4xl font-bold"> Termukan Event seru di sekolahmu</h1>
+        <h1 className="text-4xl font-bold"> Temukan Event seru di sekolahmu</h1>
         <p className="mt-3 text-slate-600">
           Workshop, Lomba, musik, dan bazar pESAN TIKETNYA DISINI
         </p>

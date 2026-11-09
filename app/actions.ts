@@ -1,6 +1,8 @@
 "use server"
+import {revalidatePath} from "next/cache";
 import {events} from "@/data/event";
 import {tambahPesanan} from "@/data/pesanan";
+import {cookies} from "next/headers";
 
 export type HasilPesan = {
     berhasil: boolean;
@@ -49,6 +51,13 @@ export async function pesanTiket(_sebelum: HasilPesan, formData: FormData ): Pro
       total: event.harga * jumlah,
       waktu: new Date().toLocaleString("id-ID"),
     });
+
+    const toples = await cookies();
+    toples.set("nama", nama, {maxAge: 60 * 60 * 24 * 30})
+
+    revalidatePath("/event");
+    revalidatePath(`/evant/${eventId}`);
+    revalidatePath("/pesanan");
 
     return {
         berhasil: true,

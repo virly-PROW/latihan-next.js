@@ -1,15 +1,24 @@
+
 "use client";
 import { useActionState, useState } from "react";
 import { pesanTiket, type HasilPesan } from "@/app/actions";
 import { rupiah, type Event } from "@/data/event";
 
-export default function FormPesan({ event }: { event: Event }) {
+export default function FormPesan({
+  event,
+  namaAwal,
+}: {
+  event: Event;
+  namaAwal: string;
+}) {
   const awal: HasilPesan = {
     berhasil: false,
     pesan: "",
     galat: {},
-    isian: { nama: "", email: "" },
+    // [DIUBAH] Nama awal diambil dari cookie
+    isian: { nama: namaAwal, email: "" },
   };
+
   const [hasil, kirim, sedangKirim] = useActionState(pesanTiket, awal);
   const [jumlah, setJumlah] = useState(1);
   const sisa = event.kuota - event.terisi;
@@ -57,7 +66,9 @@ export default function FormPesan({ event }: { event: Event }) {
       <p>Total: <b>{rupiah(event.harga * jumlah)}</b></p>
 
       {hasil.pesan && (
-        <p className={hasil.berhasil ? "text-green-700" : "text-red-600"}>{hasil.pesan}</p>
+        <p className={hasil.berhasil ? "text-green-700" : "text-red-600"}>
+          {hasil.pesan}
+        </p>
       )}
 
       <button

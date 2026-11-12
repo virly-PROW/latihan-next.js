@@ -1,12 +1,10 @@
-
 import Link from "next/link";
-import { cookies } from "next/headers"; // TAMBAHAN
+import { cookies } from "next/headers";
 import { pesanan } from "@/data/pesanan";
 import { rupiah } from "@/data/event";
-
+import { batalkanPesanan } from "@/app/actions";
 
 export default async function HalamanPesanan() {
-
   const namaCookie = (await cookies()).get("nama")?.value ?? "";
   const totalTiket = pesanan.reduce((t, p) => t + p.jumlah, 0);
   const pendapatan = pesanan.reduce((t, p) => t + p.total, 0);
@@ -22,7 +20,10 @@ export default async function HalamanPesanan() {
 
       {pesanan.length === 0 ? (
         <p className="text-slate-500">
-          Belum ada pesanan. <Link href="/event" className="text-blue-600 underline">Pilih event</Link>
+          Belum ada pesanan.{" "}
+          <Link href="/event" className="text-blue-600 underline">
+            Pilih event
+          </Link>
         </p>
       ) : (
         <>
@@ -37,6 +38,7 @@ export default async function HalamanPesanan() {
                 <th className="p-2">Pemesan</th>
                 <th className="p-2">Tiket</th>
                 <th className="p-2">Total</th>
+                <th className="p-2"></th>
               </tr>
             </thead>
             <tbody>
@@ -44,7 +46,6 @@ export default async function HalamanPesanan() {
                 <tr key={p.nomor} className="border-t">
                   <td className="p-2">{p.nomor}</td>
                   <td className="p-2">{p.judul}</td>
-
                   <td className="p-2">
                     <span>{p.nama}</span>
                     {namaCookie && p.nama === namaCookie && (
@@ -53,9 +54,16 @@ export default async function HalamanPesanan() {
                       </span>
                     )}
                   </td>
-
                   <td className="p-2">{p.jumlah}</td>
                   <td className="p-2">{rupiah(p.total)}</td>
+                  <td className="p-2">
+                    {namaCookie && p.nama === namaCookie && (
+                      <form action={batalkanPesanan}>
+                        <input type="hidden" name="nomor" value={p.nomor} />
+                        <button className="text-red-600 underline">Batalkan</button>
+                      </form>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

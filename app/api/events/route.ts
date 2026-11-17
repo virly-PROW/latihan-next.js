@@ -1,5 +1,5 @@
-import {events} from "@/data/event";
+import {ambilEvents} from "@/data/ambil";
 
 export async function GET() {
-    return Response.json(events);
+    return Response.json(await ambilEvents());
 }

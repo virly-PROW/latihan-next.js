@@ -3,7 +3,6 @@ import {ambilEvents} from "@/data/ambil";
 import KartuEvent from "@/components/KartuEvent";
 
 export default async function Beranda() {
-  const semua = await ambilEvents();
   const terdekat = await ambilEvents(3);
   return (
     <div>

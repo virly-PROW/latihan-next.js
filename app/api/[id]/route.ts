@@ -1,15 +1,15 @@
-import {events} from "@/data/event";
+import { ambilEvent } from "@/data/ambil";
 
 export async function GET(
-    _request: Request,
-    ctx: RouteContext<"/api/[id]">
+  _request: Request,
+  ctx: RouteContext<"/api/events/[id]">
 ) {
-    const { id } = await ctx.params;
-    const event = events.find((e) => e.id === Number(id));
+  const { id } = await ctx.params;
+  const event = await ambilEvent(Number(id));
 
-    if (!event) {
+  if (!event) {
     return Response.json({ pesan: "Event tidak ditemukan" }, { status: 404 });
-    }
+  }
 
-     return Response.json(event);
+  return Response.json(event);
 }

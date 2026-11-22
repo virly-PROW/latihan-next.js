@@ -3,7 +3,7 @@ import {ambilEvents} from "@/data/ambil";
 import KartuEvent from "@/components/KartuEvent";
 
 export default async function Beranda() {
-  const terdekat = await ambilEvents(3);
+  const terdekat = await ambilEvents();
   return (
     <div>
       <section className="py-12 text-center">

@@ -20,7 +20,7 @@ export default async function HalamanPesanan() {
       <h1 className="mb-2 text-2xl font-bold">Daftar Pesanan</h1>
       {namaSaya && (
         <p className="mb-3 text-slate-600">
-          Halo, <b>{namaSaya}</b>! Pesananmu ditandai &quot;Kamu&quot;.
+          Halo!, <b>{namaSaya}</b>! Pesananmu ditandai &quot;Kamu&quot;.
         </p>
       )}
 

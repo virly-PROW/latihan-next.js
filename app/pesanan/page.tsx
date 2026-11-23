@@ -28,7 +28,7 @@ export default async function HalamanPesanan() {
         <p className="text-slate-500">
           Belum ada pesanan.{" "}
           <Link href="/event" className="text-blue-600 underline">
-            Pilih event
+            Pilih event!
           </Link>
         </p>
       ) : (
